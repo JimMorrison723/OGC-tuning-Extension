@@ -1,4 +1,8 @@
-﻿function SmileyButtons() {
+﻿function SettingsButton(){
+$('a.exit').after('<a class="" href="'+chrome.extension.getURL('/html/settings.html')+'">Bővítmény Beállítása</a>');
+}
+
+function SmileyButtons() {
         var arr = [ "heart", "minishock", "biggrin", "blushing", "bored", "mellow", "tongue", "ohmy", "blink", "smile", "sad", "crying", "wink", "xd" ];
 		var arr2 = [ "sziv", "oO", "vigyor", "pirul", "bocs", "uncsi", "nyelves", "omg", "wtf", "mosoly", "szomoru", "siros", "kacsint", "xd" ];
         for (var i = 0; i < arr.length-1; i++) {
@@ -41,6 +45,7 @@ function FormattingButtons() {
 
 	
 function extInit() {
+	SettingsButton();
         if(dataStore['smiley_bar'] == 'checked') {
                 SmileyButtons();
         }
