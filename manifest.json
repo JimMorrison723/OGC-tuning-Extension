@@ -1,0 +1,46 @@
+{
+  "name": "OGC+",
+  "version": "0.1",
+  "description": "Jobb ogc odalak.",
+  "options_page": "html/settings.html",
+  "background_page": "html/background.html",
+  "content_scripts": [
+    {
+      "matches": [
+	  "http://www.teamfortress.hu/*",
+	  "http://www.battlefield.hu/*",
+	  "http://www.trackmania.hu/*",
+	  "http://www.counter-strike.hu/*",
+	  "http://www.half-life.hu/*",
+	  "http://www.aoe.rts.hu/*",
+	  "http://www.sc.rts.hu/*",
+	  "http://www.w3.rts.hu/*",
+	  "http://www.dota.rts.rts.hu/*",
+	  "http://www.cod.hu/*",
+	  "http://www.nfs.hu/*",
+	  "http://www.steampowered.hu/*"
+	  ],
+      "css": ["css/style.css"],
+      "js": ["js/jquery.js", "js/settings.js", "js/script.js"] //"js/jqueryui.js",
+    }
+  ],
+  "permissions": [
+    "http://www.teamfortress.hu/",
+	  "http://www.battlefield.hu/",
+	  "http://www.trackmania.hu/",
+	  "http://www.counter-strike.hu/",
+	  "http://www.half-life.hu/",
+	  "http://www.aoe.rts.hu/",
+	  "http://www.sc.rts.hu/",
+	  "http://www.w3.rts.hu/",
+	  "http://www.dota.rts.rts.hu/",
+	  "http://www.cod.hu/",
+	  "http://www.steampowered.hu/",
+	  "http://www.nfs.hu/"
+  ],
+  "icons" : { 
+		"16" : "img/icon.png",
+		"48": "img/icon.png",
+		"128": "img/icon.png"
+	}
+}
