@@ -13,6 +13,7 @@ function FormattingButtons() {
 	$('#hozzaszolas').before('<button id="formunder" value="u">[U]</button>');
 	$('#hozzaszolas').before('<button id="formitalics" value="i">[I]</button>');
 	$('#hozzaszolas').before('<button id="formimg" value="img">Kép</button>');
+	$('#hozzaszolas').before('<button id="formimg" value="video">Videó</button>');
 	$('#hozzaszolas').before('<button id="formlink" value="url">Link</button>');
 		
 	$(':button[id^="form"]').click(function () {
