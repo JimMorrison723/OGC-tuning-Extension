@@ -14,8 +14,7 @@ function FormattingButtons() {
 	$('#hozzaszolas').before('<button id="formitalics" value="i">[I]</button>');
 		
 	$(':button[id^="form"]').click(function () {
-        /* var textarea = jQuery('#message'); */
-        $('#message').val($('#message').val() + '<' + $(this).val() + '>' + getSelectedText() + '<' + $(this).val() + '>');
+        $('#message').val($('#message').val() + '<' + $(this).val() + '>' + getSelectedText() + '</' + $(this).val() + '>');
         evt.preventDefault();
     });  
 	
