@@ -1,7 +1,7 @@
-{
-  "name": "OGC+",
+﻿{
+  "name": "Jobb OGC játék oldalak",
   "version": "0.1.1",
-  "description": "Jobb ogc odalak.",
+  "description": "OGC Játékos odalaihoz készített nem hivatalos bővítmény.",
   "options_page": "html/settings.html",
   "background_page": "html/background.html",
   "content_scripts": [
@@ -25,7 +25,7 @@
 	  "http://www.steampowered.hu/*"
 	  ],
       "css": ["css/style.css"],
-      "js": ["js/jquery.js", "js/settings.js", "js/script.js"] //"js/jqueryui.js",
+      "js": ["js/jquery.js", "js/settings.js", "js/script.js"]
     }
   ],
   "permissions": [
@@ -48,7 +48,8 @@
   ],
   "icons" : { 
 		"16" : "img/icon.png",
-		"48": "img/icon.png",
-		"128": "img/icon.png"
-	}
+		"48": "img/logo.png",
+		"128": "img/logo.png"
+	},
+   "update_url": "http://clients2.google.com/service/update2/crx"
 }

@@ -8,7 +8,7 @@
 
 function SettingsButton(){
 
-	$('a.exit:eq(0)').after('<a class="" href="'+chrome.extension.getURL('/html/settings.html')+'">Bővítmény Beállítása</a>');
+	$('a.exit:eq(0)').after('<a class="extset" href="'+chrome.extension.getURL('/html/settings.html')+'">Bővítmény Beállítása</a>');
 	
 }
 
@@ -69,15 +69,16 @@ function CommentsForMe() {
 function extInit() {
 
 	SettingsButton();
-        if(dataStore['smiley_bar'] == 'checked') {
-            SmileyButtons();
-        }
- 		if(dataStore['formatting_toolbar'] == 'checked') {
-            FormattingButtons();
-        } 
-		if(dataStore['comments_for_me'] == 'checked') {
-            CommentsForMe();
-        } 
+	
+    if(dataStore['smiley_bar'] == 'checked') {
+        SmileyButtons();
+    }
+ 	if(dataStore['formatting_toolbar'] == 'checked') {
+		FormattingButtons();
+    } 
+	if(dataStore['comments_for_me'] == 'checked') {
+        CommentsForMe();
+    } 
 		
 }
  
