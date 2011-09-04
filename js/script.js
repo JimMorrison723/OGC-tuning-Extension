@@ -1,19 +1,32 @@
-﻿function SettingsButton(){
-$('a.exit:eq(0)').after('<a class="" href="'+chrome.extension.getURL('/html/settings.html')+'">Bővítmény Beállítása</a>');
+﻿function UserName() {
+
+	if ($('li#uzenetek').remove()){
+		return $('.header .userbox.right p a:eq(0)').text();
+	}
+	
+}
+
+function SettingsButton(){
+
+	$('a.exit:eq(0)').after('<a class="" href="'+chrome.extension.getURL('/html/settings.html')+'">Bővítmény Beállítása</a>');
+	
 }
 
 function SmileyButtons() {
+
         var arr = [ "heart", "minishock", "biggrin", "blushing", "bored", "mellow", "tongue", "ohmy", "blink", "smile", "sad", "crying", "wink", "xd" ];
 		var arr2 = [ "sziv", "oO", "vigyor", "pirul", "bocs", "uncsi", "nyelves", "omg", "wtf", "mosoly", "szomoru", "siros", "kacsint", "xd" ];
         for (var i = 0; i < arr.length-1; i++) {
-                $('#hozzaszolas').before('<button id="smiley" value="'+arr2[i]+'"><img src="'+chrome.extension.getURL('/img/smiley/'+arr[i]+'.png')+'" /></button>'); //value=":'+arr[i]+':" width=16 height=16
+            $('#hozzaszolas').before('<button id="smiley" value="'+arr2[i]+'"><img src="'+chrome.extension.getURL('/img/smiley/'+arr[i]+'.png')+'" /></button>'); //value=":'+arr[i]+':" width=16 height=16
         }
         $(":button[id=|smiley]").click(function () {
-                wherever_cursor_is = $('#message').val($('#message').val()+":"+$(this).val()+":");
-        });    
+            wherever_cursor_is = $('#message').val($('#message').val()+":"+$(this).val()+":");
+        });
+		
  }
  
 function FormattingButtons() {
+
 	$('#hozzaszolas').before('<br ><button id="formbold" value="b">[B]</button>');
 	$('#hozzaszolas').before('<button id="formunder" value="u">[U]</button>');
 	$('#hozzaszolas').before('<button id="formitalics" value="i">[I]</button>');
@@ -31,7 +44,7 @@ function FormattingButtons() {
         evt.preventDefault();
     });  
 	
-	 function getSelectedText() {
+	function getSelectedText() {
 		if (window.getSelection) {
 			return window.getSelection();
 		}
@@ -40,18 +53,32 @@ function FormattingButtons() {
 		}
 		return '';
 	}
+	
 } 
  
+function CommentsForMe() {
+
+	var uName = UserName();
+	if (uName != ""){
+	$('.valasz span:contains("' + uName + '")').css("background-color","yellow");	
+	}
+	
+}
 
 	
 function extInit() {
+
 	SettingsButton();
         if(dataStore['smiley_bar'] == 'checked') {
-                SmileyButtons();
+            SmileyButtons();
         }
  		if(dataStore['formatting_toolbar'] == 'checked') {
-                FormattingButtons();
+            FormattingButtons();
         } 
+		if(dataStore['comments_for_me'] == 'checked') {
+            CommentsForMe();
+        } 
+		
 }
  
 var dataStore;
