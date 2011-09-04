@@ -1,6 +1,6 @@
 ﻿function UserName() {
 
-	if ($('li#uzenetek').remove()){
+	if ($('li#uzenetek').text()){
 		return $('.header .userbox.right p a:eq(0)').text();
 	}
 	
