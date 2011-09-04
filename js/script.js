@@ -1,5 +1,5 @@
 ﻿function SettingsButton(){
-$('a.exit').after('<a class="" href="'+chrome.extension.getURL('/html/settings.html')+'">Bővítmény Beállítása</a>');
+$('a.exit:eq(0)').after('<a class="" href="'+chrome.extension.getURL('/html/settings.html')+'">Bővítmény Beállítása</a>');
 }
 
 function SmileyButtons() {
