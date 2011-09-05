@@ -1,3 +1,6 @@
-a.extset{
+a.extset, a.extset.visited{
 	color:#979797;
+}
+#chat_smileyk{
+	background: url('../images/chat/chat_msgbg.png') repeat-y left top #686868;
 }

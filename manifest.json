@@ -1,6 +1,6 @@
 ﻿{
   "name": "Jobb OGC játék oldalak",
-  "version": "0.1.1",
+  "version": "0.1.1.3",
   "description": "OGC Játékos odalaihoz készített nem hivatalos bővítmény.",
   "options_page": "html/settings.html",
   "background_page": "html/background.html",
@@ -47,7 +47,7 @@
 	  "http://www.nfs.hu/"
   ],
   "icons" : { 
-		"16" : "img/icon.png",
+		"16" : "img/logo32.png",
 		"48": "img/logo.png",
 		"128": "img/logo.png"
 	},
