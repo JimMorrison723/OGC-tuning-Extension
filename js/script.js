@@ -15,6 +15,7 @@ function SettingsButton(){
 function GetLoc(){
 	
 	if(document.location.href.match('/privatemessage/')) {
+		$('hozzaszolasok').parent("form").remove();
 		return ".privat";
 	}
 	else{ //((document.location.href.match('/blog/')) || (document.location.href.match('/topic/')))
@@ -35,11 +36,14 @@ function SmileyButtons() {
         }
         $(":button[id=|smiley]").click(function () {
 			if (loc == ".privat"){
-				$('.privat').val($('.privat').val()+":"+$(this).val()+":"); //wherever_cursor_is = 
+				return;
 			}
 			else{
 				$('#message').val($('#message').val()+":"+$(this).val()+":");
 			}
+        });
+		$("input[type=submit]").click(function () {
+				$('form').submit(function() { return true; });
         });
 		
  }
@@ -99,8 +103,13 @@ function FormattingButtons() {
 function CommentsForMe() {
 
 	var uName = UserName();
+	//Highlight style
+	var sty = {
+		'background-color' : 'SpringGreen',
+		'color' : '#333333'
+    } 
 	if (uName != ""){
-	$('.valasz span:contains("' + uName + '")').css("background-color","yellow");	
+		$('.valasz:contains("' + uName + '")').css(sty);	
 	}
 	
 }
