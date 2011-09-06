@@ -8,17 +8,16 @@
 
 function SettingsButton(){
 
-	$('a.exit:eq(0)').after('<a class="extset" target="_blank" href="'+chrome.extension.getURL('/html/settings.html')+'">Bővítmény Beállítása</a>');
+	$('a.exit:eq(0)').after('<a class="extset" target="_blank" href="' + chrome.extension.getURL('/html/settings.html') + '">Bővítmény Beállítása</a>');
 	
 }
 
 function GetLoc(){
 	
 	if(document.location.href.match('/privatemessage/')) {
-		$('hozzaszolasok').parent("form").remove();
 		return ".privat";
 	}
-	else{ //((document.location.href.match('/blog/')) || (document.location.href.match('/topic/')))
+	else{
 		return "#hozzaszolas";
 	}
 
@@ -32,20 +31,17 @@ function SmileyButtons() {
 		var arr2 = [ "sziv", "oO", "vigyor", "pirul", "bocs", "uncsi", "nyelves", "omg", "wtf", "mosoly", "szomoru", "siros", "kacsint", "xd" ]; 
 		
         for (var i = 0; i < arr.length-1; i++) {
-            $(loc).before('<button id="smiley" value="'+arr2[i]+'"><img src="'+chrome.extension.getURL('/img/smiley/'+arr[i]+'.png')+'" /></button>');
+            $(loc).before('<button id="smiley' + i + '" value="' + arr2[i] + '"><img src="' + chrome.extension.getURL('/img/smiley/'+arr[i] + '.png') + '" /></button>');
         }
-        $(":button[id=|smiley]").click(function () {
-			if (loc == ".privat"){
-				return;
+        $(":button[id^=|smiley]").click(function (e) {
+		e.preventDefault();
+			if (loc == '.privat'){
+				$('.privat').val($('.privat').val() + ":" + $(this).val() + ":");
 			}
 			else{
-				$('#message').val($('#message').val()+":"+$(this).val()+":");
+				$('#message').val($('#message').val() + ":" + $(this).val() + ":");
 			}
-        });
-		$("input[type=submit]").click(function () {
-				$('form').submit(function() { return true; });
-        });
-		
+        });		
  }
  
  function SmileyChatButtons() {
@@ -57,12 +53,12 @@ function SmileyButtons() {
 		var html = '';
 		html += '<div id="chat_smileyk">';
         for (var i = 0; i < arr.length-1; i++) {
-            html +='<button id="smiley" value="'+arr2[i]+'"><img src="'+chrome.extension.getURL('/img/smiley/'+arr[i]+'.png')+'" /></button>';
+            html +='<button id="smiley" value="' + arr2[i] + '"><img src="' + chrome.extension.getURL('/img/smiley/' + arr[i] + '.png') + '" /></button>';
         }
 		html+= '</div>'
 		$(html).appendTo('.chat.ui-draggable');
         $(":button[id=|smiley]").click(function () {
-				$('#chat_message').val($('#chat_message').val()+":"+$(this).val()+":");
+				$('#chat_message').val($('#chat_message').val() + ":" + $(this).val() + ":");
         });
 		
  }
@@ -78,14 +74,26 @@ function FormattingButtons() {
 	$(loc).before('<button id="formimg" value="video">Videó</button>');
 	$(loc).before('<button id="formlink" value="url">Link</button>');
 		
-	$(':button[id^="form"]').click(function () {
-        if ([$(this).attr("value")]=='url'){
-		    $('#message').val($('#message').val() + '[' + $(this).val() + '=link]' + getSelectedText() + '[/' + $(this).val() + ']');
+	$(':button[id^="form"]').click(function (e) {
+	e.preventDefault();
+	
+		if (loc == '.privat'){
+			if ([$(this).attr("value")]=='url'){
+				$('.privat').val($('.privat').val() + '[' + $(this).val() + '=link]' + getSelectedText() + '[/' + $(this).val() + ']');
+			}
+			else{
+				$('.privat').val($('.privat').val() + '[' + $(this).val() + ']' + getSelectedText() + '[/' + $(this).val() + ']');
+			}
 		}
 		else{
-			$('#message').val($('#message').val() + '[' + $(this).val() + ']' + getSelectedText() + '[/' + $(this).val() + ']');
+			if ([$(this).attr("value")]=='url'){
+				$('#message').val($('#message').val() + '[' + $(this).val() + '=link]' + getSelectedText() + '[/' + $(this).val() + ']');
+			}
+			else{
+				$('#message').val($('#message').val() + '[' + $(this).val() + ']' + getSelectedText() + '[/' + $(this).val() + ']');
+			}
 		}
-        evt.preventDefault();
+		
     });  
 	
 	function getSelectedText() {
@@ -106,7 +114,7 @@ function CommentsForMe() {
 	//Highlight style
 	var sty = {
 		'background-color' : 'SpringGreen',
-		'color' : '#333333'
+		'color' : '#CECECE'
     } 
 	if (uName != ""){
 		$('.valasz:contains("' + uName + '")').css(sty);	
