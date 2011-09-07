@@ -114,7 +114,7 @@ function CommentsForMe() {
 	//Highlight style
 	var sty = {
 		'background-color' : 'SpringGreen',
-		'color' : '#CECECE'
+		'color' : '#666'
     } 
 	if (uName != ""){
 		$('.valasz:contains("' + uName + '")').css(sty);	
