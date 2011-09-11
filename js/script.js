@@ -126,22 +126,25 @@ function CommentsForMe() {
 
 	var uName = UserName();
 	//Highlight style
-	var sty = {
-		'background-color' : 'SpringGreen',
-		'color' : '#666'
-    } 
 	if (uName != ""){
-		$('.valasz:contains("' + uName + '")').css(sty);	
+		$('.valasz:contains("' + uName + '")').css("background-color", "SpringGreen");	
 	}
 	
 }
 
 function AlapSmileyLetiltas() {
 
-	$("#insert").css("display","none");
+	$("#insert").hide();
 	
 }
+
+function NewHighlight() {
+
+	//Highlight style
+	$('.hirblokk span.comments:contains("új")').parent().css("background-color", "#FFFF99");	
 	
+}
+		
 function extInit() {
 
 	SettingsButton();
@@ -157,6 +160,9 @@ function extInit() {
     } 
 	if(dataStore['comments_for_me'] == 'checked') {
         CommentsForMe();
+    } 
+	if(dataStore['highlight_new'] == 'checked') {
+        NewHighlight();
     } 
 }
  
