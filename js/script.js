@@ -1,5 +1,6 @@
 ﻿function UserName() {
-
+	
+	//Get the username
 	if ($('li#uzenetek').text()){
 		return $('.header .userbox.right p a:eq(0)').text();
 	}
@@ -8,12 +9,14 @@
 
 function SettingsButton(){
 
+	//Place a button for the extension's options page
 	$('a.exit:eq(0)').after('<a class="extset" target="_blank" href="' + chrome.extension.getURL('/html/settings.html') + '">Bővítmény Beállítása</a>');
 	
 }
 
 function GetLoc(){
 	
+	// Get the location (messages or forum page)
 	if(document.location.href.match('/privatemessage/')) {
 		return ".privat";
 	}
@@ -24,23 +27,27 @@ function GetLoc(){
 }
 
 function SmileyButtons() {
-
+		
 		var loc = GetLoc();
+		
+		AlapSmileyLetiltas();
 		
         var arr =  [ "heart", "minishock", "biggrin", "blushing", "bored", "mellow", "tongue", "ohmy", "blink", "smile", "sad", "crying", "wink", "xd" ];
 		var arr2 = [ "sziv", "oO", "vigyor", "pirul", "bocs", "uncsi", "nyelves", "omg", "wtf", "mosoly", "szomoru", "siros", "kacsint", "xd" ]; 
 		
+		//Inject smileys
         for (var i = 0; i < arr.length-1; i++) {
             $(loc).before('<button id="smiley' + i + '" value="' + arr2[i] + '"><img src="' + chrome.extension.getURL('/img/smiley/'+arr[i] + '.png') + '" /></button>');
         }
+		
         $(":button[id^=|smiley]").click(function (e) {
-		e.preventDefault();
-			if (loc == '.privat'){
-				$('.privat').val($('.privat').val() + ":" + $(this).val() + ":");
-			}
-			else{
-				$('#message').val($('#message').val() + ":" + $(this).val() + ":");
-			}
+			e.preventDefault();
+				if (loc == '.privat'){
+					$('.privat').val($('.privat').val() + ":" + $(this).val() + ":");
+				}
+				else{
+					$('#message').val($('#message').val() + ":" + $(this).val() + ":");
+				}
         });		
  }
  
@@ -50,14 +57,20 @@ function SmileyButtons() {
 		var arr2 = [ "sziv", "oO", "vigyor", "pirul", "bocs", "uncsi", "nyelves", "omg", "wtf", "mosoly", "szomoru", "siros", "kacsint", "xd" ];
 		
 		$chatf  = $('.msgleft');
+		
+		//Inject smileys
 		var html = '';
+		
+		//Create div for the smileys
 		html += '<div id="chat_smileyk">';
         for (var i = 0; i < arr.length-1; i++) {
             html +='<button id="smiley" value="' + arr2[i] + '"><img src="' + chrome.extension.getURL('/img/smiley/' + arr[i] + '.png') + '" /></button>';
         }
-		html+= '</div>'
+		html+= '</div>';
 		$(html).appendTo('.chat.ui-draggable');
-        $(":button[id=|smiley]").click(function () {
+        
+		//Smiley button click function
+		$(":button[id=|smiley]").click(function () {
 				$('#chat_message').val($('#chat_message').val() + ":" + $(this).val() + ":");
         });
 		
@@ -66,7 +79,8 @@ function SmileyButtons() {
 function FormattingButtons() {
 	
 	var loc = GetLoc();
-	
+	AlapSmileyLetiltas();
+	//Place the Formatting Buttons
 	$(loc).before('<br ><button id="formbold" value="b">[B]</button>');
 	$(loc).before('<button id="formunder" value="u">[U]</button>');
 	$(loc).before('<button id="formitalics" value="i">[I]</button>');
@@ -122,6 +136,11 @@ function CommentsForMe() {
 	
 }
 
+function AlapSmileyLetiltas() {
+
+	$("#insert").css("display","none");
+	
+}
 	
 function extInit() {
 
@@ -139,7 +158,6 @@ function extInit() {
 	if(dataStore['comments_for_me'] == 'checked') {
         CommentsForMe();
     } 
-		
 }
  
 var dataStore;
