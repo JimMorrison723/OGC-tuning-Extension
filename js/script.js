@@ -1,4 +1,8 @@
-﻿function UserName() {
+﻿var arr   = [ "heart", "minishock", "biggrin", "blushing", "bored", "mellow", "tongue", "ohmy", "blink", "smile", "sad", "crying", "wink", "xd" ];
+var arr2 = [ "sziv", "oO", "vigyor", "pirul", "bocs", "uncsi", "nyelves", "omg", "wtf", "mosoly", "szomoru", "siros", "kacsint", "xd" ]; 
+
+
+function UserName() {
 	
 	//Get the username
 	if ($('li#uzenetek').text()){
@@ -18,43 +22,59 @@ function GetLoc(){
 	
 	// Get the location (messages or forum page)
 	if(document.location.href.match('/privatemessage/')) {
+	/* $('ul li a').css("background","none"); */
+	/* $("image[src='i_author.png']").remove() */
+		var sty = { 
+/* 			'text-decoration':'underline',
+			'font-weight':'bold',
+			'padding':'0px 0px 0px 0px', */
+			'width':'auto',
+			'background':'#FFF'
+		}
+		$('div.hozzaszolas div.hszszoveg div a').css(sty);
+		$('div.hozzaszolas div.hszszoveg p a').css("margin left","-5px");
+		/* $('.markItUpHeader a').css(sty);  */
+		$('span.author a').css("background","transparent"); 
+		$('div.linkek ul li a').css("background","url ()");
 		return ".privat";
 	}
-	else{
+	else if(document.location.href.match('/blogs/add')) {
+		return ".bejegyzes:eq(1)";
+	}
+	else {
 		return "#hozzaszolas";
 	}
 
 }
+
 
 function SmileyButtons() {
 		
 		var loc = GetLoc();
 		
 		AlapSmileyLetiltas();
-		
-        var arr =  [ "heart", "minishock", "biggrin", "blushing", "bored", "mellow", "tongue", "ohmy", "blink", "smile", "sad", "crying", "wink", "xd" ];
-		var arr2 = [ "sziv", "oO", "vigyor", "pirul", "bocs", "uncsi", "nyelves", "omg", "wtf", "mosoly", "szomoru", "siros", "kacsint", "xd" ]; 
-		
+
 		//Inject smileys
-        for (var i = 0; i < arr.length-1; i++) {
-            $(loc).before('<button id="smiley' + i + '" value="' + arr2[i] + '"><img src="' + chrome.extension.getURL('/img/smiley/'+arr[i] + '.png') + '" /></button>');
-        }
+		var ard = '';
 		
-        $(":button[id^=|smiley]").click(function (e) {
+		//Create div for the smileys
+		ard += '<div id="smileyk"> <p> ';
+        
+		for (var i = 0; i < arr.length-1; i++) {
+			ard+= '<a href="#" title=":' + arr2[i] + ':"><img alt=":' + arr2[i] + ':" border="0" src="' + chrome.extension.getURL('/img/smiley/' + arr[i] + '.png') + '" /></a> ';
+        } 
+		ard += '</p> </div> ';
+		
+		$(loc).before(ard);
+		$("#smileyk a").click(function(e) {
 			e.preventDefault();
-				if (loc == '.privat'){
-					$('.privat').val($('.privat').val() + ":" + $(this).val() + ":");
-				}
-				else{
-					$('#message').val($('#message').val() + ":" + $(this).val() + ":");
-				}
-        });		
+			emoticon = $(this).attr("title");
+			$.markItUp( { replaceWith:emoticon } );
+    });
+
  }
  
  function SmileyChatButtons() {
-
-		var arr =  [ "heart", "minishock", "biggrin", "blushing", "bored", "mellow", "tongue", "ohmy", "blink", "smile", "sad", "crying", "wink", "xd" ];
-		var arr2 = [ "sziv", "oO", "vigyor", "pirul", "bocs", "uncsi", "nyelves", "omg", "wtf", "mosoly", "szomoru", "siros", "kacsint", "xd" ];
 		
 		$chatf  = $('.msgleft');
 		
@@ -63,54 +83,95 @@ function SmileyButtons() {
 		
 		//Create div for the smileys
 		html += '<div id="chat_smileyk">';
-        for (var i = 0; i < arr.length-1; i++) {
+        for (var i = 0; i < arr.length-1; i++) 
+		{
             html +='<button id="smiley" value="' + arr2[i] + '"><img src="' + chrome.extension.getURL('/img/smiley/' + arr[i] + '.png') + '" /></button>';
         }
 		html+= '</div>';
 		$(html).appendTo('.chat.ui-draggable');
         
 		//Smiley button click function
-		$(":button[id=|smiley]").click(function () {
+		$(":button[id=|smiley]").click(function () 
+		{
 				$('#chat_message').val($('#chat_message').val() + ":" + $(this).val() + ":");
         });
 		
  }
  
+ 
+function AddEditor () {
+	
+	var edi = '';
+	edi += '<link rel="stylesheet" type="text/css" href="' + chrome.extension.getURL('/css/sm.css') + '" />';
+	$(edi).appendTo('head');
+	
+	mySettings = {
+	previewParserPath:	'', // path to your BBCode parser
+	nameSpace:          "bbcode", // Useful to prevent multi-instances CSS conflict
+	markupSet: [
+			{name:'Félkövér', key:'B', openWith:'[b]', closeWith:'[/b]'},
+			{name:'Dőlt', key:'I', openWith:'[i]', closeWith:'[/i]'},
+			{name:'Aláhúzott', key:'U', openWith:'[u]', closeWith:'[/u]'},
+			{separator:'---------------' },
+			{name:'Kép beillesztése', key:'P', replaceWith:'[img][![Url]!][/img]'},
+			{name:'Hivatkozás', key:'L', openWith:'[url=[![Url]!]]', closeWith:'[/url]', placeHolder:'Link címe...'},
+		]
+	}
+	
+	/* $("#message").markItUp(mySettings); */
+	 
+	$('.markItUpEditor').css("background:url(images/bg-editor.png)", "no-repeat");
+	$('.markItUpContainer').css("background:url(images/bg-container.png)", "repeat-x");
+}
+ 
 function FormattingButtons() {
 	
+	//Get location
 	var loc = GetLoc();
+	
+	//Forbid default smileys
 	AlapSmileyLetiltas();
+
+	//Add style
+
+
+	AddEditor();
+	
+
+	
+/* 	var sty = {
+		'border-style':'sty'
+	}
+	
 	//Place the Formatting Buttons
-	$(loc).before('<br ><button id="formbold" value="b">[B]</button>');
-	$(loc).before('<button id="formunder" value="u">[U]</button>');
-	$(loc).before('<button id="formitalics" value="i">[I]</button>');
+	$(loc).before('<br ><button id="formbold" value="b"><b>B</b></button>');
+	$(loc).before('<button id="formunder" value="u"><u>U</u></button>');
+	$(loc).before('<button id="formitalics" value="i"><i>I</i></button>');
 	$(loc).before('<button id="formimg" value="img">Kép</button>');
-	$(loc).before('<button id="formimg" value="video">Videó</button>');
+	/* $(loc).before('<button id="formimg" value="video">Videó</button>'); *
 	$(loc).before('<button id="formlink" value="url">Link</button>');
-		
+	$(':button[id^="form"]').css(sty);
+	
 	$(':button[id^="form"]').click(function (e) {
 	e.preventDefault();
-	
-		if (loc == '.privat'){
-			if ([$(this).attr("value")]=='url'){
-				$('.privat').val($('.privat').val() + '[' + $(this).val() + '=link]' + getSelectedText() + '[/' + $(this).val() + ']');
-			}
-			else{
-				$('.privat').val($('.privat').val() + '[' + $(this).val() + ']' + getSelectedText() + '[/' + $(this).val() + ']');
-			}
+*/
+		if (loc == '.privat') {
+				$(".privat").markItUp(mySettings);
+		}
+		else if(loc == '.bejegyzes:eq(1)') {
+				$(".bejegyzes:eq(1)").markItUp(mySettings);
+/* 				$(loc).before('<button id="formimg" value="video">Videó</button>'); */
 		}
 		else{
-			if ([$(this).attr("value")]=='url'){
-				$('#message').val($('#message').val() + '[' + $(this).val() + '=link]' + getSelectedText() + '[/' + $(this).val() + ']');
-			}
-			else{
-				$('#message').val($('#message').val() + '[' + $(this).val() + ']' + getSelectedText() + '[/' + $(this).val() + ']');
-			}
-		}
-		
-    });  
+				$("#message").markItUp(mySettings);		
+	}
+/*     });   */
 	
-	function getSelectedText() {
+/* 	$(':button[id^="form"]').click(function (e) {
+		e.preventDefault();
+		$('bejegyzes markItUpEditor').val($('bejegyzes markItUpEditor').val() + '[' + $(this).val() + ']' + getSelectedText() + '[/' + $(this).val() + ']');
+	});  */
+/* 	function getSelectedText() {
 		if (window.getSelection) {
 			return window.getSelection();
 		}
@@ -118,7 +179,7 @@ function FormattingButtons() {
 			return document.selection.createRange().text;	
 		}
 		return '';
-	}
+	} */
 	
 } 
  
@@ -134,7 +195,7 @@ function CommentsForMe() {
 
 function AlapSmileyLetiltas() {
 
-	$("#insert").hide();
+	$("#insert").remove();
 	
 }
 
@@ -144,7 +205,7 @@ function NewHighlight() {
 	$('.hirblokk span.comments:contains("új")').parent().css("background-color", "#FFFF99");	
 	
 }
-		
+
 function extInit() {
 
 	SettingsButton();

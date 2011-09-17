@@ -1,6 +1,6 @@
 ﻿{
   "name": "OGC tuning",
-  "version": "0.1.7",
+  "version": "0.5",
   "description": "OGC Játékos odalaihoz készített nem hivatalos bővítmény.",
   "options_page": "html/settings.html",
   "background_page": "html/background.html",
@@ -24,8 +24,8 @@
 	  "http://www.nfs.hu/*",
 	  "http://www.steampowered.hu/*"
 	  ],
-      "css": ["css/style.css"],
-      "js": ["js/jquery.js", "js/settings.js", "js/script.js"]
+      "css": ["css/style.css", "css/editor.css"],
+      "js": ["js/jquery.js", "js/settings.js", "js/script.js","js/markitup.js"]
     }
   ],
   "permissions": [

@@ -9,6 +9,13 @@ h1 {
 	font-size: 24px;
 	font-weight: bold;
 }
+h2 {
+	font-size: 20px;
+	font-weight: bold;
+}
+a a.visited {
+	color:#000;
+}
 input, select, .data {
 	float: left;
 }
