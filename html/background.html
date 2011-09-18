@@ -12,6 +12,15 @@
                         }
                 });
         });
+		
+		function install_notice() {
+			if (localStorage.getItem('install_time'))
+				return;
+                    var now = new Date().getTime();
+                    localStorage.setItem('install_time', now);
+                chrome.tabs.create({url: "html/settings.html"});
+                }
+         install_notice();
 		</script>
 	</head>
 </html>

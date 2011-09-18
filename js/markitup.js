@@ -359,7 +359,7 @@
 				if (previewWindow && options.previewAutoRefresh) {
 					refreshPreview(); 
 				}
-																									
+
 				// reinit keyevent
 				shiftKey = altKey = ctrlKey = abort = false;
 			}
@@ -434,88 +434,6 @@
 				return selection;
 			}
 
-			/* // open preview window
-			function preview() {
-				if (!previewWindow || previewWindow.closed) {
-					if (options.previewInWindow) {
-						previewWindow = window.open('', 'preview', options.previewInWindow);
-						$(window).unload(function() {
-							previewWindow.close();
-						});
-					} else {
-						iFrame = $('<iframe class="markItUpPreviewFrame"></iframe>');
-						if (options.previewPosition == 'after') {
-							iFrame.insertAfter(footer);
-						} else {
-							iFrame.insertBefore(header);
-						}	
-						previewWindow = iFrame[iFrame.length - 1].contentWindow || frame[iFrame.length - 1];
-					}
-				} else if (altKey === true) {
-					if (iFrame) {
-						iFrame.remove();
-					} else {
-						previewWindow.close();
-					}
-					previewWindow = iFrame = false;
-				}
-				if (!options.previewAutoRefresh) {
-					refreshPreview(); 
-				}
-				if (options.previewInWindow) {
-					previewWindow.focus();
-				}
-			}
-
-			// refresh Preview window
-			function refreshPreview() {
- 				renderPreview();
-			}
-
-			function renderPreview() {		
-				var phtml;
-				if (options.previewParser && typeof options.previewParser === 'function') {
-					var data = options.previewParser( $$.val() );
-					writeInPreview( localize(data, 1) ); 
-				} else if (options.previewParserPath !== '') {
-					$.ajax({
-						type: 'POST',
-						dataType: 'text',
-						global: false,
-						url: options.previewParserPath,
-						data: options.previewParserVar+'='+encodeURIComponent($$.val()),
-						success: function(data) {
-							writeInPreview( localize(data, 1) ); 
-						}
-					});
-				} else {
-					if (!template) {
-						$.ajax({
-							url: options.previewTemplatePath,
-							dataType: 'text',
-							global: false,
-							success: function(data) {
-								writeInPreview( localize(data, 1).replace(/<!-- content -->/g, $$.val()) );
-							}
-						});
-					}
-				}
-				return false;
-			}
-			
-			function writeInPreview(data) {
-				if (previewWindow.document) {			
-					try {
-						sp = previewWindow.document.documentElement.scrollTop
-					} catch(e) {
-						sp = 0;
-					}	
-					previewWindow.document.open();
-					previewWindow.document.write(data);
-					previewWindow.document.close();
-					previewWindow.document.documentElement.scrollTop = sp;
-				}
-			} */
 			
 			// set keys pressed
 			function keyPressed(e) { 

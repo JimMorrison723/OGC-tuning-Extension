@@ -11,7 +11,7 @@ function UserName() {
 	
 }
 
-function SettingsButton(){
+function SettingsButton() {
 
 	//Place a button for the extension's options page
 	$('a.exit:eq(0)').after('<a class="extset" target="_blank" href="' + chrome.extension.getURL('/html/settings.html') + '">Bővítmény Beállítása</a>');
@@ -19,20 +19,21 @@ function SettingsButton(){
 }
 
 function GetLoc(){
-	
+	var sty = { 
+/* 			'text-decoration':'underline',
+			'font-weight':'bold',
+			'padding':'0px 0px 0px 0px', */
+			'width':'534px !important',
+			'background':'#FFF'
+		}
 	// Get the location (messages or forum page)
 	if(document.location.href.match('/privatemessage/')) {
 	/* $('ul li a').css("background","none"); */
 	/* $("image[src='i_author.png']").remove() */
-		var sty = { 
-/* 			'text-decoration':'underline',
-			'font-weight':'bold',
-			'padding':'0px 0px 0px 0px', */
-			'width':'auto',
-			'background':'#FFF'
-		}
+		
 		$('div.hozzaszolas div.hszszoveg div a').css(sty);
 		$('div.hozzaszolas div.hszszoveg p a').css("margin left","-5px");
+		$('bbcode').removeClass('div.hozzaszolas div.hszszoveg')
 		/* $('.markItUpHeader a').css(sty);  */
 		$('span.author a').css("background","transparent"); 
 		$('div.linkek ul li a').css("background","url ()");
@@ -42,6 +43,7 @@ function GetLoc(){
 		return ".bejegyzes:eq(1)";
 	}
 	else {
+	$('div.hozzaszolas div.hszszoveg div a').css(sty);
 		return "#hozzaszolas";
 	}
 
@@ -132,54 +134,18 @@ function FormattingButtons() {
 	//Forbid default smileys
 	AlapSmileyLetiltas();
 
-	//Add style
-
 
 	AddEditor();
-	
 
-	
-/* 	var sty = {
-		'border-style':'sty'
-	}
-	
-	//Place the Formatting Buttons
-	$(loc).before('<br ><button id="formbold" value="b"><b>B</b></button>');
-	$(loc).before('<button id="formunder" value="u"><u>U</u></button>');
-	$(loc).before('<button id="formitalics" value="i"><i>I</i></button>');
-	$(loc).before('<button id="formimg" value="img">Kép</button>');
-	/* $(loc).before('<button id="formimg" value="video">Videó</button>'); *
-	$(loc).before('<button id="formlink" value="url">Link</button>');
-	$(':button[id^="form"]').css(sty);
-	
-	$(':button[id^="form"]').click(function (e) {
-	e.preventDefault();
-*/
 		if (loc == '.privat') {
 				$(".privat").markItUp(mySettings);
 		}
 		else if(loc == '.bejegyzes:eq(1)') {
 				$(".bejegyzes:eq(1)").markItUp(mySettings);
-/* 				$(loc).before('<button id="formimg" value="video">Videó</button>'); */
 		}
-		else{
+		else {
 				$("#message").markItUp(mySettings);		
-	}
-/*     });   */
-	
-/* 	$(':button[id^="form"]').click(function (e) {
-		e.preventDefault();
-		$('bejegyzes markItUpEditor').val($('bejegyzes markItUpEditor').val() + '[' + $(this).val() + ']' + getSelectedText() + '[/' + $(this).val() + ']');
-	});  */
-/* 	function getSelectedText() {
-		if (window.getSelection) {
-			return window.getSelection();
-		}
-		else if (document.selection) {
-			return document.selection.createRange().text;	
-		}
-		return '';
-	} */
+		}	
 	
 } 
  
@@ -210,13 +176,14 @@ function extInit() {
 
 	SettingsButton();
 	
-    if(dataStore['smiley_bar'] == 'checked') {
+/*     if(dataStore['smiley_bar'] == 'checked') {
         SmileyButtons();
-    }
+    } */
 	if(dataStore['smiley_chat_bar'] == 'checked') {
         SmileyChatButtons();
     }
  	if(dataStore['formatting_toolbar'] == 'checked') {
+		SmileyButtons();
 		FormattingButtons();
     } 
 	if(dataStore['comments_for_me'] == 'checked') {

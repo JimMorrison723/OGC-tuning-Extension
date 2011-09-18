@@ -1,14 +1,26 @@
 form#hozzaszolas {
 	float:right;
 }
-
 /* ----
 // markItUp! Universal MarkUp Engine, JQuery plugin
 // By Jay Salvat - http://markitup.jaysalvat.com/
 // ---------------------*/
-div.hozzaszolasok div.uj textarea {
-	width:500px !important;
+/* div.hozzaszolasok div.uj textarea {
+	width:510px !important;
+} */
+textarea.privat {
+width: 510px !important;
 }
+textarea#message {
+width: 510px !important;
+}
+/* div.hozzaszolas div.hszszoveg p {
+ width: 530px !important; 
+} */
+div.hozzaszolas div.hszszoveg div, div.hozzaszolas div.hszszoveg p {
+    width: 530px !important;
+}
+
 .markItUp * {
 	margin:0px; padding:0px;
 	outline:none;
@@ -19,7 +31,7 @@ div.hozzaszolasok div.uj textarea {
 	text-decoration:none;
 }
 .markItUp  {
-	/* width:534px; */
+	width:534px;
 	margin:3px 0 3px 0;
 	border:2px solid #F5F5F5;	
 }
@@ -31,7 +43,7 @@ div.hozzaszolasok div.uj textarea {
 }
 .markItUpEditor {
 	font:12px 'Courier New', Courier, monospace;
-	padding:5px 5px 5px 35px;
+	padding:5px 5px 5px 5px;
 	border:3px solid #3C769D;
 	/* width:500px; */
 	height:320px;
@@ -60,7 +72,7 @@ div.hozzaszolasok div.uj textarea {
 	background-image:url(images/handle.png)  !important;
 	cursor:n-resize  !important;
 }
-/*********************************************************************/
+/************************************************************/
 /* first row of buttons */
 .markItUpHeader ul li	{
 	list-style:none!important;
@@ -135,14 +147,4 @@ div.hozzaszolasok div.uj textarea {
 	color:#FFF;
 	background-color:#3C769D;
 
-}
-
-
-
-
-textarea.privat {
-width: 85%!important;
-}
-div, div.hozzaszolas div.hszszoveg p {
-/* width: auto !important; */
 }
