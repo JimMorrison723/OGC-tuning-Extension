@@ -170,6 +170,16 @@ function NewHighlight() {
 	//Highlight style
 	$('.hirblokk span.comments:contains("új")').parent().css("background-color", "#FFFF99");	
 	
+	// cim contain all the h3 elements you're searching
+	var cim = $('.hirblokk span.comments:contains("új")').parent(".hirblokk").children("h3");
+	// you're iterating on each title
+	jQuery.each(cim, function(index,title) {
+	  // you're searching links elements containing each title text
+	  var text = $.trim($(title).text());
+	  $("ul.s_hir.show li.hir a:contains(" + text + ")").find("small").append(" (Új!)");
+	  $("ul.s_minden.show li.hir a:contains(" + text + ")").find("small").append(" (Új!)");
+	});
+	
 }
 
 function extInit() {
