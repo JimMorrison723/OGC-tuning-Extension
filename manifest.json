@@ -1,6 +1,6 @@
 ﻿{
   "name": "OGC tuning",
-  "version": "0.5.1",
+  "version": "1.0",
   "description": "OGC Játékos odalaihoz készített nem hivatalos bővítmény.",
   "options_page": "html/settings.html",
   "background_page": "html/background.html",
