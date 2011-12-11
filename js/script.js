@@ -181,7 +181,78 @@ function NewHighlight() {
 	});
 	
 }
+/* *********************            BLOCK                      *************************/
+function setBlockButton() {
+	
+	// Create the block buttons
+	$('.fej .time').each(function() {
+		$('<span>| </span><a href="#" class="block_user">letiltás</a> <span>| </span> ').insertBefore(this);
+	});
+	// Create the block evenst
+	$('.block_user').click(function(e) {
+	
+		e.preventDefault();
+		getBlockedUserNameFromButton(this);
+	});
+}
 
+function blockMessages() {
+	
+	// Return false if theres no blocklist entry
+	if(typeof dataStore['block_list'] == "undefined" || dataStore['block_list'] == '') {
+		return false;
+	}
+	
+	var deletelist = dataStore['block_list'].split(',');
+
+	$(".hozzaszolas").each( function() {
+		
+	/* Később átiirni
+	var username = ($(this).find("table tr:eq(0) td:eq(0) a img").length == 1) ? $(this).find("table tr:eq(0) td:eq(0) a img").attr("alt") : $(this).find("table tr:eq(0) td:eq(0) a")[0].innerHTML;
+			username = username.replace(/ - VIP/, ""); */
+	});
+}
+
+function getBlockedUserNameFromButton(el) {
+$('body').before("asd");
+	var userName = '';
+	var anchor2 = $(el).parent().children('.user');
+ 	//var tmpUrl = anchor2.children().attr('href').replace('/profile/', '');
+	userName = anchor2.text();
+	if(confirm('Biztos tiltólistára teszed "'+userName+'" nevű felhasználót?')) {
+	
+		$('.hozzaszolas user a[href='+tmpUrl+']').each(function() {
+	
+			$(this).closest('hozzaszolas').animate({ height : 0, opacity : 0 }, 500, function() {
+				$(this).remove();
+			})
+		});
+	
+		if(userName != '') { port.postMessage({ type : "setBlockedUser", data : userName }); }
+	}
+}
+
+
+function getBlockedUserNameFromLink(data) {
+
+	var userName = '';
+	var tmpUrl = data['linkUrl'].replace('http://www.tf2.hu/', '');
+	
+	$('.user a[href='+tmpUrl+']').each(function() {
+	
+		// Fetch username
+		userName = $(this).html();
+		
+		// Remove the comment
+		$(this).closest('hozzaszolas').animate({ height : 0, opacity : 0 }, 500, function() {
+			$(this).remove();
+		})
+	});
+	
+	if(userName != '') { port.postMessage({ type : "setBlockedUser", data : userName }); }
+}
+
+/* *********************       ////     BLOCK                      *************************/
 function extInit() {
 
 	SettingsButton();
@@ -189,6 +260,15 @@ function extInit() {
 /*     if(dataStore['smiley_bar'] == 'checked') {
         SmileyButtons();
     } */
+	
+	// Block users/messages
+	if(dataStore['block_list'] != '') {
+		blockMessages();
+	}
+	
+	// setBlockButton
+	setBlockButton();
+		
 	if(dataStore['smiley_chat_bar'] == 'checked') {
         SmileyChatButtons();
     }
@@ -204,7 +284,7 @@ function extInit() {
     } 
 }
  
-var dataStore;
+/* var dataStore;
 // Create a port to BG process
 var port = chrome.extension.connect();
 // Filter out iframes
@@ -222,4 +302,29 @@ port.onMessage.addListener(function(event) {
                         extInit();
                 });
         }
+});
+ */
+var dataStore;
+var port = chrome.extension.connect();
+
+
+port.postMessage({ type : "getStorageData" });
+
+port.onMessage.addListener(function(response) {
+     // Here comes the settings, save a copy to dataStore var
+     if(response.name == 'setSettings') {
+               dataStore = response.message;
+               $(document).ready(function() {
+                       extInit();
+               });
+     }
+	if(response.type == 'setStorageData') {
+		dataStore = response.data;
+	
+	} else if(response.type == 'getBlockedUserNameFromLink') {
+		getBlockedUserNameFromLink(response.data);
+	
+	} else if(response.type == 'getBlockedUserNameFromImage') {
+		getBlockedUserNameFromImage(response.data);
+	}	
 });
