@@ -50,6 +50,10 @@ function GetLoc(){
 }
 
 
+function PlaceSmileys() {
+	
+}
+
 function SmileyButtons() {
 		
 		var loc = GetLoc();
@@ -58,16 +62,14 @@ function SmileyButtons() {
 
 		//Inject smileys
 		var ard = '';
-		
 		//Create div for the smileys
 		ard += '<div id="smileyk"> <p> ';
-        
-		for (var i = 0; i < arr.length-1; i++) {
+		for (var i = 0; i < arr.length-1; i++)
 			ard+= '<a href="#" title=":' + arr2[i] + ':"><img alt=":' + arr2[i] + ':" border="0" src="' + chrome.extension.getURL('/img/smiley/' + arr[i] + '.png') + '" /></a> ';
-        } 
 		ard += '</p> </div> ';
 		
 		$(loc).before(ard);
+
 		$("#smileyk a").click(function(e) {
 			e.preventDefault();
 			emoticon = $(this).attr("title");
@@ -81,21 +83,21 @@ function SmileyButtons() {
 		$chatf  = $('.msgleft');
 		
 		//Inject smileys
-		var html = '';
-		
+		var ard = '';
 		//Create div for the smileys
-		html += '<div id="chat_smileyk">';
+		ard += '<div id="chat_smileyk">';
         for (var i = 0; i < arr.length-1; i++) 
-		{
-            html +='<button id="smiley" value="' + arr2[i] + '"><img src="' + chrome.extension.getURL('/img/smiley/' + arr[i] + '.png') + '" /></button>';
-        }
-		html+= '</div>';
-		$(html).appendTo('.chat.ui-draggable');
+            ard +='<a href="#" title=":' + arr2[i] + ':"><img alt=":' + arr2[i] + ':" border="0" src="' + chrome.extension.getURL('/img/smiley/' + arr[i] + '.png') + '" /></a> ';
+
+		ard+= '</div>';
+		$(ard).appendTo('.chat.ui-draggable');
         
 		//Smiley button click function
-		$(":button[id=|smiley]").click(function () 
+		$("#chat_smileyk a").click(function (e) 
 		{
-				$('#chat_message').val($('#chat_message').val() + ":" + $(this).val() + ":");
+			e.preventDefault();
+			emoticon = $(this).attr("title");
+			$('#chat_message').val($('#chat_message').val() + emoticon);
         });
 		
  }
@@ -133,7 +135,6 @@ function FormattingButtons() {
 	
 	//Forbid default smileys
 	AlapSmileyLetiltas();
-
 
 	AddEditor();
 

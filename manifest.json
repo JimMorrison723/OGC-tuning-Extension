@@ -71,7 +71,24 @@
     "/img/smiley/blushing.png",
     "/img/smiley/blink.png",
     "/img/smiley/biggrin.png",
-    "/css/sm.css"
+    "/css/sm.css",
+    "/css/images/underline.png",
+    "/css/images/submenu.png",
+    "/css/images/stroke.png",
+    "/css/images/preview.png",
+    "/css/images/picture.png",
+    "/css/images/menu.png",
+    "/css/images/list-numeric.png",
+    "/css/images/link.png",
+    "/css/images/list-bullet.png",
+    "/css/images/italic.png",
+    "/css/images/image.png",
+    "/css/images/clean.png",
+    "/css/images/bold.png",
+    "/css/images/bg-editor.png",
+    "/css/images/bgeditor-bbcode.png",
+    "/css/images/bg-container.png"
+
   ],
   "update_url": "http://clients2.google.com/service/update2/crx"
 }
