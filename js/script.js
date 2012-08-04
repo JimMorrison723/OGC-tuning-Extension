@@ -186,9 +186,6 @@ function extInit() {
 
 	SettingsButton();
 	
-/*     if(dataStore['smiley_bar'] == 'checked') {
-        SmileyButtons();
-    } */
 	if(dataStore['smiley_chat_bar'] == 'checked') {
         SmileyChatButtons();
     }

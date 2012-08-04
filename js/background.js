@@ -1,8 +1,3 @@
-<html>
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
-		<script>
 		// Catch incoming messages
         chrome.extension.onConnect.addListener(function(port) {
                 port.onMessage.addListener(function(event) {
@@ -21,6 +16,3 @@
                 chrome.tabs.create({url: "html/settings.html"});
                 }
          install_notice();
-		</script>
-	</head>
-</html>
