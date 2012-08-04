@@ -103,30 +103,17 @@ function SmileyButtons() {
  }
  
  
-function AddEditor () {
+/*function AddEditor () {
 	
-	var edi = '';
-	edi += '<link rel="stylesheet" type="text/css" href="' + chrome.extension.getURL('/css/sm.css') + '" />';
-	$(edi).appendTo('head');
 	
-	mySettings = {
-	previewParserPath:	'', // path to your BBCode parser
-	nameSpace:          "bbcode", // Useful to prevent multi-instances CSS conflict
-	markupSet: [
-			{name:'Félkövér', key:'B', openWith:'[b]', closeWith:'[/b]'},
-			{name:'Dőlt', key:'I', openWith:'[i]', closeWith:'[/i]'},
-			{name:'Aláhúzott', key:'U', openWith:'[u]', closeWith:'[/u]'},
-			{separator:'---------------' },
-			{name:'Kép beillesztése', key:'P', replaceWith:'[img][![Url]!][/img]'},
-			{name:'Hivatkozás', key:'L', openWith:'[url=[![Url]!]]', closeWith:'[/url]', placeHolder:'Link címe...'},
-		]
-	}
+$(".rte-zone").rte({
+    content_css_url: "../css/editor.css",
+    media_url: "",
+});
 	
-	/* $("#message").markItUp(mySettings); */
-	 
-	$('.markItUpEditor').css("background:url(images/bg-editor.png)", "no-repeat");
-	$('.markItUpContainer').css("background:url(images/bg-container.png)", "repeat-x");
-}
+	/* $("#message").markItUp(mySettings); *
+
+}*/
  
 function FormattingButtons() {
 	
@@ -136,16 +123,25 @@ function FormattingButtons() {
 	//Forbid default smileys
 	AlapSmileyLetiltas();
 
-	AddEditor();
+	/*AddEditor();*/
 
 		if (loc == '.privat') {
-				$(".privat").markItUp(mySettings);
+				$(".privat").editor({
+    			content_css_url: "../css/editor.css",
+    			media_url: "",
+			});
 		}
-		else if(loc == '.bejegyzes:eq(1)') {
-				$(".bejegyzes:eq(1)").markItUp(mySettings);
+		else if(loc == '.bejegyzes:eq(1)') {				
+				$(".bejegyzes:eq(1)").editor({
+    			content_css_url: "../css/editor.css",
+    			media_url: "",
+			});
 		}
 		else {
-				$("#message").markItUp(mySettings);		
+			$("#message").editor({
+    			content_css_url: "../css/editor.css",
+    			media_url: "",
+			});
 		}	
 	
 } 

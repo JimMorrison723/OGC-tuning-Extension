@@ -10,7 +10,7 @@
     "js": [ "js/jquery.js", 
             "js/settings.js",
             "js/script.js",
-            "js/markitup.js" ],
+            "js/editor.js" ],
     "matches": [ "http://www.teamfortress.hu/*",
                  "http://www.battlefield.hu/*",
                  "http://www.trackmania.hu/*",

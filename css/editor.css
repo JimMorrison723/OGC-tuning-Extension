@@ -21,130 +21,35 @@ div.hozzaszolas div.hszszoveg div, div.hozzaszolas div.hszszoveg p {
     width: 530px !important;
 }
 
-.markItUp * {
-	margin:0px; padding:0px;
-	outline:none;
+.font-bold
+{
+    padding:0px 10px 0px 10px;
+    font-weight:bold;
 }
-.markItUp a:link,
-.markItUp a:visited {
-	color:#000;
-	text-decoration:none;
+.italic
+{
+    padding:0px 10px 0px 10px;
+     font-style:italic;  
 }
-.markItUp  {
-	width:534px;
-	margin:3px 0 3px 0;
-	border:2px solid #F5F5F5;	
-}
-.markItUpContainer  {
-	border:1px solid #3C769D;	
-	background:#FFF url(images/bg-container.png) repeat-x top left;
-	padding:5px 5px 2px 5px;
-	font:11px Verdana, Arial, Helvetica, sans-serif;
-}
-.markItUpEditor {
-	font:12px 'Courier New', Courier, monospace;
-	padding:5px 5px 5px 5px;
-	border:3px solid #3C769D;
-	/* width:500px; */
-	height:320px;
-	background:#FFF url(images/bg-editor.png) no-repeat;
-	clear:both;
-	line-height:18px;
-	overflow:auto;
-}
-.markItUpPreviewFrame	{
-	overflow:auto;
-	background-color:#FFFFFF;
-	border:1px solid #3C769D;
-	width:99.9%;
-	height:300px;
-	margin:5px 0;
-}
-.markItUpFooter {
-	width:100%;
-	cursor:n-resize;
-}
-.markItUpResizeHandle {
-	overflow:hidden !important;
-	width:22px; height:5px;
-	margin-left:auto !important;
-	margin-right:auto !important;
-	background-image:url(images/handle.png)  !important;
-	cursor:n-resize  !important;
-}
-/************************************************************/
-/* first row of buttons */
-.markItUpHeader ul li	{
-	list-style:none!important;
-	float:left!important;
-	position:relative!important;
-}
-/*.markItUpHeader ul li ul{
-	display:none;
-} */
-.markItUpHeader ul li:hover > ul{
-	display:block;
-}
-.markItUpHeader ul .markItUpDropMenu {
-	background:transparent url(images/menu.png) no-repeat 115% 50%;
-	margin-right:5px;
-}
-.markItUpHeader ul .markItUpDropMenu li {
-	margin-right:0px;
-}
-.markItUpHeader ul .markItUpSeparator {
-	margin:0 10px !important;
-	width:1px !important;
-	height:16px !important;
-	overflow:hidden !important;
-	background-color:#CCC !important;
-}
-.markItUpHeader ul ul .markItUpSeparator {
-	width:auto !important; height:1px !important;
-	margin:0px !important;
-}
-/* next rows of buttons */
-.markItUpHeader ul ul {
-	display:none;
-	position:absolute;
-	top:18px; left:0px;	
-	background:#F5F5F5;
-	border:1px solid #3C769D;
-	height:inherit;
-}
-.markItUpHeader ul ul li {
-	float:none;
-	border-bottom:1px solid #3C769D;
-}
-.markItUpHeader ul ul .markItUpDropMenu {
-	background:#F5F5F5 url(images/submenu.png) no-repeat 100% 50%;
-}
-/* next rows of buttons */
-.markItUpHeader ul ul ul {
-	position:absolute;
-	top:-1px; left:150px;
-}
-.markItUpHeader ul ul ul li {
-	float:none;
-}
-.markItUpHeader ul a {
-	display:block;
-	width:16px; height:16px;
-	text-indent:-10000px;
-	background-repeat:no-repeat;
-	padding:3px;
-	margin:0px;
-}
-.markItUpHeader ul ul a {
-	display:block;
-	padding-left:0px;
-	text-indent:0;
-	width:120px; 
-	padding:5px 5px 5px 25px;
-	background-position:2px 50%;
-}
-.markItUpHeader ul ul a:hover  {
-	color:#FFF;
-	background-color:#3C769D;
+.selected
+{
+    background-color: orange;
+}​
+.editor-toolbar {
+	overflow: hidden !important;
 
+width: 500px !important;
+border: 1px solid #CCC !important;
+margin-left: 50px !important;
+padding: 5px !important;
+float: right !important;
+line-height: 1.7em !important;
+}
+.editor-toolbar a, .editor-toolbar a img {
+	border: 0;
+}
+.editor-toolbar p {
+    float:left;
+    margin:0;
+    padding-right:5px;
 }

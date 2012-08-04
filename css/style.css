@@ -8,3 +8,59 @@ a.extset, a.extset.visited{
 #chat_smileyk{
 	background: url('../images/chat/chat_msgbg.png') repeat-y left top #686868;
 }
+
+form#hozzaszolas {
+	float:right;
+}
+/* ----
+// markItUp! Universal MarkUp Engine, JQuery plugin
+// By Jay Salvat - http://markitup.jaysalvat.com/
+// ---------------------*/
+/* div.hozzaszolasok div.uj textarea {
+	width:510px !important;
+} */
+textarea.privat {
+width: 510px !important;
+}
+textarea#message {
+width: 510px !important;
+}
+/* div.hozzaszolas div.hszszoveg p {
+ width: 530px !important; 
+} */
+div.hozzaszolas div.hszszoveg div, div.hozzaszolas div.hszszoveg p {
+    width: 530px !important;
+}
+
+.font-bold
+{
+    padding:0px 10px 0px 10px;
+    font-weight:bold;
+}
+.italic
+{
+    padding:0px 10px 0px 10px;
+     font-style:italic;  
+}
+.selected
+{
+    background-color: orange;
+}​
+.editor-toolbar {
+	overflow: hidden !important;
+
+width: 500px !important;
+border: 1px solid #CCC !important;
+margin-left: 50px !important;
+padding: 5px !important;
+float: right !important;
+line-height: 1.7em !important;
+}
+.editor-toolbar a, .editor-toolbar a img {
+	border: 0;
+}
+.editor-toolbar p {
+    float:left;
+    margin:0;
+    padding-right:5px;
+}
