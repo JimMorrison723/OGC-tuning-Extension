@@ -98,6 +98,9 @@
       [/<\/li>/gi, "[/*]"],
       [/<.*?>(.*?)<\/.*?>/g, "$1"],
 
+
+      /*[/<span style="Apple-style-span" size="1">([\s\S]*?)<\/font>/img, "[apro]$1[/apro]"],*/
+
       //Smileyk
       [/<img.*?src.*images\/smiley\/heart.png".*?>/gmi, ":heart:"],
       [/<img.*?src.*http:\/\/static.ogc.hu\/images\/smiley\/minishock.png".*?>/gmi, ":oO:"],

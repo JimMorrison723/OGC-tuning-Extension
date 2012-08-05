@@ -25,13 +25,10 @@
       width:        533, // width not including margins, borders or padding
       height:       160, // height not including margins, borders or padding
       controls:     // controls to add to the toolbar
-                    "bold italic underline |" +
-                    " undo redo | " +
-                    "image link unlink | source",
-/*                    "undo redo | bold italic underline | font size " +
+                    "undo redo | bold italic underline | font size " +
                     "style | color highlight removeformat | bullets numbering | " +
                     " | alignleft center alignright | undo redo | " +
-                    "rule image link unlink | cut copy paste pastetext | print source",*/
+                    "rule image link unlink | cut copy paste pastetext | print source",
       colors:       // colors in the color popup
                     "FF0000 FF00FF 800080 0000FF 00FFFF 00FF00 008000 FFFF00 FFA500",
 

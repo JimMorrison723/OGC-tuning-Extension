@@ -1,7 +1,6 @@
 ﻿var arr   = [ "heart", "minishock", "biggrin", "blushing", "bored", "mellow", "tongue", "ohmy", "blink", "smile", "sad", "crying", "wink", "xd" ];
 var arr2 = [ "sziv", "oO", "vigyor", "pirul", "bocs", "uncsi", "nyelves", "omg", "wtf", "mosoly", "szomoru", "siros", "kacsint", "xd" ]; 
 
-
 function UserName() {
 	
 	//Get the username
@@ -20,30 +19,20 @@ function SettingsButton() {
 
 function GetLoc(){
 	var sty = { 
-/* 			'text-decoration':'underline',
-			'font-weight':'bold',
-			'padding':'0px 0px 0px 0px', */
 			'width':'534px !important',
 			'background':'#FFF'
 		}
 	// Get the location (messages or forum page)
 	if(document.location.href.match('/privatemessage/')) {
-	/* $('ul li a').css("background","none"); */
-	/* $("image[src='i_author.png']").remove() */
-		
-/*		$('div.hozzaszolas div.hszszoveg div a').css(sty);
-		$('div.hozzaszolas div.hszszoveg p a').css("margin left","-5px");
-		$('bbcode').removeClass('div.hozzaszolas div.hszszoveg')
-		/* $('.markItUpHeader a').css(sty);  *
-		$('span.author a').css("background","transparent"); 
-		$('div.linkek ul li a').css("background","url ()");*/
-		return ".privat";
+		return "";
 	}
-	else if(document.location.href.match('/blogs/add')) {
+	else if(document.location.href.match('/blogs/add') || document.location.href.match('/blogs/edit')) {
+		/*AlapSmileyLetiltas();*/
 		return ".bejegyzes:eq(1)";
 	}
 	else {
 	$('div.hozzaszolas div.hszszoveg div a').css(sty);
+		AlapSmileyLetiltas();
 		return "#message:first";
 	}
 
@@ -53,7 +42,7 @@ function SmileyButtons() {
 		
 		var loc = GetLoc();
 		
-		AlapSmileyLetiltas();
+		/*AlapSmileyLetiltas();*/
 
 		//Inject smileys
 		var ard = '';
@@ -66,7 +55,7 @@ function SmileyButtons() {
 		$(loc).before(ard);
 
 		$('#smileyk img').click(function(e) {
-
+			/* Code by dzsani */
 			e.preventDefault();
 
 			var tag = $(this).attr('alt'); // sziv
@@ -76,12 +65,9 @@ function SmileyButtons() {
 			var ihtml = '<img src="http://static.ogc.hu/images/smiley/' + origin_source + '.png">';
 
 			var tarea = $('textarea').val() + bhtml;
-			console.log(tarea);
 			var imod = $(".cleditorMain:first iframe").contents().find('body').html() + ihtml;
-			console.log(imod);
 
-			console.log(loc);
-			$('textarea').next().val(tarea);
+			$('textarea').val(tarea);
 			$('textarea').cleditor()[0].focus();
 			$('.cleditorMain:first iframe').contents().find('body').html(imod);
 			$('textarea').cleditor()[0].focus();
@@ -118,23 +104,19 @@ function SmileyButtons() {
         });		
  }
  
- 
-
- /**********************************************************************************************************************************/
 function FormattingButtons() {
-		AlapSmileyLetiltas();
 		var loc = GetLoc();
 		
 		// CLEditor
-		$.cleditor.defaultOptions.height = 522;
-		$.cleditor.defaultOptions.height = 162;
+		$.cleditor.defaultOptions.width = 522;
+		$.cleditor.defaultOptions.height = 200;
 		$.cleditor.defaultOptions.controls = "bold italic underline | image link unlink | undo redo | source";
 		$(loc).cleditor();
 		$(loc).css('position', 'relative');
 
 	
 } 
-/**********************************************************************************************************************************/
+
 function CommentsForMe() {
 
 	var uName = UserName();
