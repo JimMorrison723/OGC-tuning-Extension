@@ -31,12 +31,12 @@ function GetLoc(){
 	/* $('ul li a').css("background","none"); */
 	/* $("image[src='i_author.png']").remove() */
 		
-		$('div.hozzaszolas div.hszszoveg div a').css(sty);
+/*		$('div.hozzaszolas div.hszszoveg div a').css(sty);
 		$('div.hozzaszolas div.hszszoveg p a').css("margin left","-5px");
 		$('bbcode').removeClass('div.hozzaszolas div.hszszoveg')
-		/* $('.markItUpHeader a').css(sty);  */
+		/* $('.markItUpHeader a').css(sty);  *
 		$('span.author a').css("background","transparent"); 
-		$('div.linkek ul li a').css("background","url ()");
+		$('div.linkek ul li a').css("background","url ()");*/
 		return ".privat";
 	}
 	else if(document.location.href.match('/blogs/add')) {
@@ -44,7 +44,7 @@ function GetLoc(){
 	}
 	else {
 	$('div.hozzaszolas div.hszszoveg div a').css(sty);
-		return "#hozzaszolas";
+		return "#message:first";
 	}
 
 }
@@ -70,24 +70,30 @@ function SmileyButtons() {
 			e.preventDefault();
 
 			var tag = $(this).attr('alt'); // sziv
-			console.log(tag);
 			var origin_source = $(this).data('origin'); //heart
 	
 			var bhtml = ':' + tag + ':';
-			console.log(bhtml);
-			var ihtml = '<img src="http://static.ogc.hu/images/smiley/' + tag + '.png">';
-			console.log(ihtml);
+			var ihtml = '<img src="http://static.ogc.hu/images/smiley/' + origin_source + '.png">';
 
-			var tarea = $('textarea[name="message"]:first').val() + bhtml;
+			var tarea = $('textarea').val() + bhtml;
 			console.log(tarea);
 			var imod = $(".cleditorMain:first iframe").contents().find('body').html() + ihtml;
 			console.log(imod);
 
-			$('textarea[name="message"]:first').val(tarea);
-			$('textarea[name="message"]:first').cleditor()[0].focus();
+			console.log(loc);
+			$('textarea').next().val(tarea);
+			$('textarea').cleditor()[0].focus();
 			$('.cleditorMain:first iframe').contents().find('body').html(imod);
-			$('textarea[name="message"]:first').cleditor()[0].focus();
+			$('textarea').cleditor()[0].focus();
 		});
+
+		//Szerkeszt gomb módosítása
+		$('a.szerkeszt').click(function(e) {
+
+			$('.cleditorMain:first iframe').contents().find('body').html($('#message:first').val());
+
+		});
+
     };
  
  function SmileyChatButtons() {
@@ -117,37 +123,15 @@ function SmileyButtons() {
  /**********************************************************************************************************************************/
 function FormattingButtons() {
 		AlapSmileyLetiltas();
-	// Rearrange buttons
-					// CLEditor init
+		var loc = GetLoc();
+		
+		// CLEditor
 		$.cleditor.defaultOptions.height = 522;
 		$.cleditor.defaultOptions.height = 162;
 		$.cleditor.defaultOptions.controls = "bold italic underline | image link unlink | undo redo | source";
-		$('#message').cleditor();
-$('#message').css('position', 'relative');
-/*		$('#message').css('position', 'relative');
-		$('#message a:eq(0)').css({ 'position' : 'absolute', 'left' : 20 });
-		$('#message a:eq(1)').css({ 'position' : 'absolute', 'left' : 110 });
-		$('#message a:eq(2)').css('visibility', 'hidden');
-		$('#message a:eq(3)').css('visibility', 'hidden');
-		$('#message a:eq(4)').css({ 'position' : 'absolute', 'left' : 200 });
-		$('#message a:eq(5)').css({ 'position' : 'absolute', 'left' : 290 });
-		$('#message a:eq(6)').css({ 'position' : 'absolute', 'right' : 22 });	*/	
+		$(loc).cleditor();
+		$(loc).css('position', 'relative');
 
-		// Create smiles container
-		/*$('<div id="ext_smiles"></div>').appendTo('form[name="newmessage"]');*/
-
-		// Add click event to show or hide smile list
-/*		$('form[name="newmessage"] a:eq(0)').toggle(
-			function(e) {
-				e.preventDefault();
-				$('#ext_smiles').slideDown();
-			},
-
-			function(e) {
-				e.preventDefault();
-				$('#ext_smiles').slideUp();
-			}
-		);*/
 	
 } 
 /**********************************************************************************************************************************/

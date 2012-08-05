@@ -132,11 +132,11 @@
       [/\[\*\]/g, "<li>"]
 
 
-      [/\:sziv\:, '<img src="http://static.ogc.hu/images/smiley/heart.png">'],
+/*      [/\:sziv:/gmi, '<img src="http://static.ogc.hu/images/smiley/heart.png">'],*/
 
 
-      [/\[url=(.*?)\](.*?)\[\/url\]/gi, "<a href=\"$1\">$2</a>"],
-      [/\[img\](.*?)\[\/img\]/gi, "<img src=\"$1\">"],
+/*      [/\[url=(.*?)\](.*?)\[\/url\]/gi, "<a href=\"$1\">$2</a>"],
+      [/\[img\](.*?)\[\/img\]/gi, "<img src=\"$1\">"],*/
 
       ], function(index, item) {
         code = code.replace(item[0], item[1]);
