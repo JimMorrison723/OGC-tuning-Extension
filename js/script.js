@@ -49,11 +49,6 @@ function GetLoc(){
 
 }
 
-
-function PlaceSmileys() {
-	
-}
-
 function SmileyButtons() {
 		
 		var loc = GetLoc();
@@ -65,27 +60,33 @@ function SmileyButtons() {
 		//Create div for the smileys
 		ard += '<div id="smileyk"> <p> ';
 		for (var i = 0; i < arr.length-1; i++)
-			ard+= '<a href="#" title=":' + arr2[i] + ':"><img alt=":' + arr2[i] + ':" border="0" src="' + chrome.extension.getURL('/img/smiley/' + arr[i] + '.png') + '" /></a> ';
+			ard+= '<img alt="' + arr2[i] + '" src="http://static.ogc.hu/images/smiley/'+ arr[i] + '.png" data-origin="'+arr[i]+'"/></a>';
 		ard += '</p> </div> ';
 		
 		$(loc).before(ard);
 
-		$('#smileyk a').click(function(e) {
+		$('#smileyk img').click(function(e) {
 
 			e.preventDefault();
 
-			var tag = $(this).attr('src').replace(/.*ep\/faces\/(.*?)\..*/ig, "$1");
-
-			var bhtml = '[#' + tag + ']';
-			var ihtml = '<img src="/kep/faces/' + tag + '.gif">';
+			var tag = $(this).attr('alt'); // sziv
+			console.log(tag);
+			var origin_source = $(this).data('origin'); //heart
+	
+			var bhtml = ':' + tag + ':';
+			console.log(bhtml);
+			var ihtml = '<img src="http://static.ogc.hu/images/smiley/' + tag + '.png">';
+			console.log(ihtml);
 
 			var tarea = $('textarea[name="message"]:first').val() + bhtml;
+			console.log(tarea);
 			var imod = $(".cleditorMain:first iframe").contents().find('body').html() + ihtml;
+			console.log(imod);
 
-/*			$('textarea[name="message"]:first').val(tarea);
+			$('textarea[name="message"]:first').val(tarea);
 			$('textarea[name="message"]:first').cleditor()[0].focus();
 			$('.cleditorMain:first iframe').contents().find('body').html(imod);
-			$('textarea[name="message"]:first').cleditor()[0].focus();*/
+			$('textarea[name="message"]:first').cleditor()[0].focus();
 		});
     };
  

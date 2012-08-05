@@ -43,8 +43,8 @@
   // BBCode only supports a small subset of HTML, so remove
   // any toolbar buttons that are not currently supported.
   $.cleditor.defaultOptions.controls =
-    "bold italic underline strikethrough removeformat | bullets numbering | " +
-    "undo redo | image link unlink | cut copy paste pastetext | print source";
+    "bold italic |" +
+    "image link unlink | undo redo | source";
 
   // Save the previously assigned callback handlers
   var oldAreaCallback = $.cleditor.defaultOptions.updateTextArea;
@@ -78,7 +78,7 @@
   $.cleditor.convertHTMLtoBBCode = function(html) {
 		
     $.each([
-      [/[\r|\n]/g, ""],
+     [/[\r|\n]/g, ""],
       [/<br.*?>/gi, "\n"],
       [/<b>(.*?)<\/b>/gi, "[b]$1[/b]"],
       [/<strong>(.*?)<\/strong>/gi, "[b]$1[/b]"],
@@ -96,7 +96,14 @@
       [/<\/ol>/gi, "[/list]"],
       [/<li>/gi, "[*]"],
       [/<\/li>/gi, "[/*]"],
-      [/<.*?>(.*?)<\/.*?>/g, "$1"]
+      [/<.*?>(.*?)<\/.*?>/g, "$1"],
+
+      //Smileyk
+      [/<img.*?src.*images\/smiley\/heart.png".*?>/gmi, ":heart:"],
+      [/<img.*?src.*http:\/\/static.ogc.hu\/images\/smiley\/minishock.png".*?>/gmi, ":oO:"],
+      [/<a.*?href="(.*?)".*?>(.*?)<\/a>/gi, "[url=$1]$2[/url]"],
+      [/<img.*?src="(.*?)".*?>/gi, "[img]$1[/img]"]
+
       ], function(index, item) {
         html = html.replace(item[0], item[1]);
       });
@@ -123,6 +130,14 @@
       [/\[list=1\]/gi, "<ol>"],
       [/\[\*\](.*?)\[\/\*\]/g, "<li>$1</li>"],
       [/\[\*\]/g, "<li>"]
+
+
+      [/\:sziv\:, '<img src="http://static.ogc.hu/images/smiley/heart.png">'],
+
+
+      [/\[url=(.*?)\](.*?)\[\/url\]/gi, "<a href=\"$1\">$2</a>"],
+      [/\[img\](.*?)\[\/img\]/gi, "<img src=\"$1\">"],
+
       ], function(index, item) {
         code = code.replace(item[0], item[1]);
       });
