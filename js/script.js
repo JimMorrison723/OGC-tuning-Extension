@@ -7,21 +7,21 @@ function UserName() {
 	if ($('li#uzenetek').text()){
 		return $('.header .userbox.right p a:eq(0)').text();
 	}
-	
 }
 
 function SettingsButton() {
 
 	//Place a button for the extension's options page
 	$('a.exit:eq(0)').after('<a class="extset" target="_blank" href="' + chrome.extension.getURL('/html/settings.html') + '">Bővítmény Beállítása</a>');
-	
 }
 
 function GetLoc(){
+
 	var sty = { 
 			'width':'534px !important',
 			'background':'#FFF'
 		}
+
 	// Get the location (messages or forum page)
 	if(document.location.href.match('/privatemessage/')) {
 		return "";
@@ -35,14 +35,11 @@ function GetLoc(){
 		AlapSmileyLetiltas();
 		return "#message:first";
 	}
-
 }
 
 function SmileyButtons() {
 		
 		var loc = GetLoc();
-		
-		/*AlapSmileyLetiltas();*/
 
 		//Inject smileys
 		var ard = '';
@@ -112,9 +109,7 @@ function FormattingButtons() {
 		$.cleditor.defaultOptions.height = 200;
 		$.cleditor.defaultOptions.controls = "bold italic underline | image link unlink | undo redo | source";
 		$(loc).cleditor();
-		$(loc).css('position', 'relative');
-
-	
+		$(loc).css('position', 'relative');	
 } 
 
 function CommentsForMe() {
@@ -124,13 +119,11 @@ function CommentsForMe() {
 	if (uName != ""){
 		$('.valasz:contains("' + uName + '")').css("background-color", "SpringGreen");	
 	}
-	
 }
 
 function AlapSmileyLetiltas() {
 
 	$("#insert").remove();
-	
 }
 
 function NewHighlight() {
