@@ -15,6 +15,12 @@ function SettingsButton() {
 	$('a.exit:eq(0)').after('<a class="extset" target="_blank" href="' + chrome.extension.getURL('/html/settings.html') + '">Bővítmény Beállítása</a>');
 }
 
+
+function AlapSmileyLetiltas() {
+
+	$("#insert").remove();
+}
+
 function GetLoc(){
 
 	var sty = { 
@@ -87,7 +93,7 @@ function SmileyButtons() {
 		//Create div for the smileys
 		ard += '<div id="chat_smileyk">';
         for (var i = 0; i < arr.length-1; i++) 
-            ard +='<a href="#" title=":' + arr2[i] + ':"><img alt=":' + arr2[i] + ':" border="0" src="' + chrome.extension.getURL('/img/smiley/' + arr[i] + '.png') + '" /></a> ';
+            ard +='<a href="#" title=":' + arr2[i] + ':"><img alt=":' + arr2[i] + ':" border="0" src="http://static.ogc.hu/images/smiley/' + arr[i] + '.png" /></a>';
 
 		ard+= '</div>';
 		$(ard).appendTo('.chat.ui-draggable');
@@ -105,10 +111,11 @@ function FormattingButtons() {
 		var loc = GetLoc();
 		
 		// CLEditor
-		$.cleditor.defaultOptions.width = 522;
-		$.cleditor.defaultOptions.height = 200;
-		$.cleditor.defaultOptions.controls = "bold italic underline | image link unlink | undo redo | source";
-		$(loc).cleditor();
+		$(loc).cleditor({
+			width : 522,
+			height : 200,
+			controls : "bold italic underline | image link unlink | undo redo | source"
+		});
 		$(loc).css('position', 'relative');	
 } 
 
@@ -119,11 +126,6 @@ function CommentsForMe() {
 	if (uName != ""){
 		$('.valasz:contains("' + uName + '")').css("background-color", "SpringGreen");	
 	}
-}
-
-function AlapSmileyLetiltas() {
-
-	$("#insert").remove();
 }
 
 function NewHighlight() {

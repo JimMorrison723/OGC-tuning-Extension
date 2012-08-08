@@ -6,12 +6,10 @@
  Copyright 2010, Chris Landowski, Premium Software, LLC
  Dual licensed under the MIT or GPL Version 2 licenses.
 */
-
 // ==ClosureCompiler==
 // @compilation_level SIMPLE_OPTIMIZATIONS
 // @output_file_name jquery.cleditor.bbcode.min.js
 // ==/ClosureCompiler==
-
 /*
 
   The CLEditor useCSS optional parameter should be set to false for this plugin

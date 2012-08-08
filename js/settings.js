@@ -1,7 +1,8 @@
 function saveOptions() {
-	$('input:checkbox').click(function(){ 
-		localStorage[ $(this).attr('id') ] = $(this).attr('checked'); 
-	});
+
+        $('input:checkbox').click(function(){ 
+	       localStorage[ $(this).attr('id') ] = $(this).attr('checked'); 
+        });
 }
 
 function loadOptions() {
@@ -14,11 +15,10 @@ function loadOptions() {
 }
 
 $(document).ready(function() {
+        
         loadOptions();
        
         $('input:checkbox').click(function(){
                 localStorage[ $(this).attr('id') ] = $(this).attr('checked');
         });    
 });
-
-
